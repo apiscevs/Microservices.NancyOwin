@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloMicroservices", "Hello
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2E1DD843-3050-4AAE-BF47-92036531A16D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsFunctionApp", "ProductsFunctionApp\ProductsFunctionApp.csproj", "{446A4296-337B-4543-8225-1A773B1C4925}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E1DD843-3050-4AAE-BF47-92036531A16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E1DD843-3050-4AAE-BF47-92036531A16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E1DD843-3050-4AAE-BF47-92036531A16D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446A4296-337B-4543-8225-1A773B1C4925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446A4296-337B-4543-8225-1A773B1C4925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446A4296-337B-4543-8225-1A773B1C4925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446A4296-337B-4543-8225-1A773B1C4925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

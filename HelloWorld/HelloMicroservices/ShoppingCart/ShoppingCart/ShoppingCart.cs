@@ -41,13 +41,13 @@
     public int ProductCatalogueId { get; }
     public string ProductName { get; }
     public string Desscription { get; }
-    public Money Price { get; }
+    public decimal Price { get; }
 
     public ShoppingCartItem(
       int productCatalogueId,
       string productName,
       string description,
-      Money price)
+      decimal price)
     {
       this.ProductCatalogueId = productCatalogueId;
       this.ProductName = productName;
@@ -70,18 +70,6 @@
     public override int GetHashCode()
     {
       return this.ProductCatalogueId.GetHashCode();
-    }
-  }
-
-  public class Money
-  {
-    public string Currency { get; }
-    public decimal Amount { get; }
-
-    public Money(string currency, decimal amount)
-    {
-      this.Currency = currency;
-      this.Amount = amount;
     }
   }
 }
