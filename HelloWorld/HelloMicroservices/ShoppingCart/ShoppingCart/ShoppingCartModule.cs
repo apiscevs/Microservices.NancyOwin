@@ -20,7 +20,7 @@ namespace ShoppingCart.ShoppingCart
             {
                 var userId = (int)parameters.userId;
 
-                //var test = productCatalogClient.GetShoppingCartItems(new int[] { 2, 3 }).Result;
+                var test = productCatalogClient.GetShoppingCartItems(new int[] { 2, 3 }).Result;
                 return shoppingCartStore.Get(userId);
             });
 

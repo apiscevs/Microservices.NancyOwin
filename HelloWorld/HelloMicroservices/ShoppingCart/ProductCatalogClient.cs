@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Polly;
+using Polly.Retry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +12,30 @@ namespace ShoppingCart.ShoppingCart
 {
     public class ProductCatalogClient : IProductCatalogClient
     {
-        //private static Policy exponentialRetryPolicy =
-        //  Policy
-        //    .Handle<Exception>()
-        //    .WaitAndRetryAsync(
-        //      3,
-        //      attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)), (ex, _) => Console.WriteLine(ex.ToString()));
+        private static AsyncRetryPolicy exponentialRetryPolicy =
+          Policy
+            .Handle<Exception>()
+            .WaitAndRetryAsync(
+              20,
+              attempt => TimeSpan.FromMilliseconds(1000 * Math.Pow(2, attempt)), (ex, _) => 
+              Console.WriteLine(ex.ToString()))
+            ;
 
         private static string productCatalogueBaseUrl =
             @"https://microservice-getproducts.azurewebsites.net";
         //@"http://localhhost:7071";
         private static string getProductPathTemplate =
             "api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==";
-          //"api/GetProductsFunc";
+        //"api/GetProductsFunc";
         //https://microservice-getproducts.azurewebsites.net/api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==
 
 
-        //public Task<IEnumerable<ShoppingCartItem>>
-        //  GetShoppingCartItems(int[] productCatalogueIds) =>
-        //  exponentialRetryPolicy
-        //    .ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds).ConfigureAwait(false));
+        public Task<IEnumerable<ShoppingCartItem>>
+          GetShoppingCartItems(int[] productCatalogueIds) =>
+          exponentialRetryPolicy
+            .ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds).ConfigureAwait(false));
 
-        public async Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds) => await GetItemsFromCatalogueService(productCatalogueIds).ConfigureAwait(false);
+       // public async Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds) => await GetItemsFromCatalogueService(productCatalogueIds).ConfigureAwait(false);
 
         private async Task<IEnumerable<ShoppingCartItem>>
           GetItemsFromCatalogueService(int[] productCatalogueIds)
