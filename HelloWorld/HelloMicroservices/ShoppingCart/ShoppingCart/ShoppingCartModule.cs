@@ -1,5 +1,6 @@
 ﻿using Nancy;
 using Nancy.ModelBinding;
+using ShoppingCart.EventFeed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace ShoppingCart.ShoppingCart
     {
         public ShoppingCartModule(
             IShoppingCartStore shoppingCartStore,
-            IProductCatalogClient productCatalogClient//,
-           // IEventStore eventStore
+            IProductCatalogClient productCatalogClient,
+            IEventStore eventStore
             )
             : base("/shoppingcart")
         {
@@ -20,37 +21,37 @@ namespace ShoppingCart.ShoppingCart
             {
                 var userId = (int)parameters.userId;
 
-                var test = productCatalogClient.GetShoppingCartItems(new int[] { 2, 3 }).Result;
                 return shoppingCartStore.Get(userId);
             });
 
-            //Post("/{userId:int}/items",
-            //    async (parameters, _) =>
-            //    {
-            //        var productCatalogIds = this.Bind<int[]>();
-            //        var userId = (int)parameters.userId;
+            Post("/{userId:int}/items",
+                async (parameters, _) =>
+                {
+                    var productCatalogIds = this.Bind<int[]>();
+                    var userId = (int)parameters.userId;
 
-            //        var shoppingCart = shoppingCartStore.Get(userId);
-            //        var shoppingCartItems = await productCatalog
-            //            .GetShoppingCartItems(productCatalogIds).ConfigureAwait(false);
-            //        shoppingCart.AddItems(shoppingCartItems, eventStore);
-            //        shoppingCartStore.Save(shoppingCart);
+                    var shoppingCart = shoppingCartStore.Get(userId);
+                    var shoppingCartItems = await productCatalogClient
+                        .GetShoppingCartItems(productCatalogIds).ConfigureAwait(false);
 
-            //        return shoppingCart;
-            //    });
+                    shoppingCart.AddItems(shoppingCartItems, eventStore);
+                    shoppingCartStore.Save(shoppingCart);
 
-            //Delete("/{userId:int}/items",
-            //    parameters =>
-            //    {
-            //        var productCatalogIds = this.Bind<int[]>();
-            //        var userId = (int)parameters.userId;
+                    return shoppingCart;
+                });
 
-            //        var shoppingCart = shoppingCartStore.Get(userId);
-            //        shoppingCart.RemoveItems(productCatalogIds, eventStore);
-            //        shoppingCartStore.Save(shoppingCart);
+            Delete("/{userId:int}/items",
+                parameters =>
+                {
+                    var productCatalogIds = this.Bind<int[]>();
+                    var userId = (int)parameters.userId;
 
-            //        return shoppingCart;
-            //    });
+                    var shoppingCart = shoppingCartStore.Get(userId);
+                    shoppingCart.RemoveItems(productCatalogIds, eventStore);
+                    shoppingCartStore.Save(shoppingCart);
+
+                    return shoppingCart;
+                });
         }
     }
 }

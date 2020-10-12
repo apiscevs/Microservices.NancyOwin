@@ -12,6 +12,7 @@ namespace ShoppingCart.ShoppingCart
 {
     public class ProductCatalogClient : IProductCatalogClient
     {
+        
         private static AsyncRetryPolicy exponentialRetryPolicy =
           Policy
             .Handle<Exception>()
