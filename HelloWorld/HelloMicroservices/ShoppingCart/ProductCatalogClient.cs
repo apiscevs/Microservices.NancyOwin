@@ -23,11 +23,15 @@ namespace ShoppingCart.ShoppingCart
             ;
 
         private static string productCatalogueBaseUrl =
-            @"https://microservice-getproducts.azurewebsites.net";
-        //@"http://localhhost:7071";
+           // @"https://microservice-getproducts.azurewebsites.net";
+        @"http://127.0.0.1:7071";
         private static string getProductPathTemplate =
-            "api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==";
-        //"api/GetProductsFunc";
+           // "api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==";
+        "api/GetProductsFunc";
+
+
+
+
         //https://microservice-getproducts.azurewebsites.net/api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==
 
 
