@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram", "LoyaltyPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGatewayMock", "ApiGatewayMock\ApiGatewayMock.csproj", "{EF764719-E9C2-4CEB-9D04-27E3856D7152}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialOffers.EventFeed", "SpecialOffers.EventFeed\SpecialOffers.EventFeed.csproj", "{0D01F15B-DD02-4C2E-870B-88844835F15B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgramEventConsumer", "LoyaltyProgramEventConsumer\LoyaltyProgramEventConsumer.csproj", "{23EA0001-9533-4135-89D6-F2C969BB3DAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D01F15B-DD02-4C2E-870B-88844835F15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D01F15B-DD02-4C2E-870B-88844835F15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D01F15B-DD02-4C2E-870B-88844835F15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D01F15B-DD02-4C2E-870B-88844835F15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23EA0001-9533-4135-89D6-F2C969BB3DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23EA0001-9533-4135-89D6-F2C969BB3DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23EA0001-9533-4135-89D6-F2C969BB3DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23EA0001-9533-4135-89D6-F2C969BB3DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
