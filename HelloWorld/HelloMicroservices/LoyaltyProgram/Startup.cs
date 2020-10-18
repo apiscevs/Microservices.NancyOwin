@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nancy.Owin;
 
-namespace ShoppingCart
+namespace LoyaltyProgram
 {
     public class Startup
     {
@@ -28,7 +28,7 @@ namespace ShoppingCart
             services.Configure<IISServerOptions>(options =>
             {
                 options.AllowSynchronousIO = true;
-            });            
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

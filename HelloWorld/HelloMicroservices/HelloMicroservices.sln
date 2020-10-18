@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloMicroservices", "HelloMicroservices\HelloMicroservices.csproj", "{12D57B95-681C-424B-A9C1-4F59C2258338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2E1DD843-3050-4AAE-BF47-92036531A16D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2E1DD843-3050-4AAE-BF47-92036531A16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsFunctionApp", "ProductsFunctionApp\ProductsFunctionApp.csproj", "{446A4296-337B-4543-8225-1A773B1C4925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductsFunctionApp", "ProductsFunctionApp\ProductsFunctionApp.csproj", "{446A4296-337B-4543-8225-1A773B1C4925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram.csproj", "{C68F9A28-1612-4000-8868-E9564369A732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGatewayMock", "ApiGatewayMock\ApiGatewayMock.csproj", "{EF764719-E9C2-4CEB-9D04-27E3856D7152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{446A4296-337B-4543-8225-1A773B1C4925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446A4296-337B-4543-8225-1A773B1C4925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446A4296-337B-4543-8225-1A773B1C4925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68F9A28-1612-4000-8868-E9564369A732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68F9A28-1612-4000-8868-E9564369A732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68F9A28-1612-4000-8868-E9564369A732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68F9A28-1612-4000-8868-E9564369A732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF764719-E9C2-4CEB-9D04-27E3856D7152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
