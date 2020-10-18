@@ -16,8 +16,10 @@ namespace LoyaltyProgram.Store
             return database[userId];
         }
 
-        public void Save(LoyalityProgramUser shoppingCart)
+        public void Save(LoyalityProgramUser loyaltyUProgramUser)
         {
+            if (!database.ContainsKey(loyaltyUProgramUser.Id))
+                database[loyaltyUProgramUser.Id] = new LoyalityProgramUser(loyaltyUProgramUser.Id);
             // Nothing needed. Saving would be needed with a real DB
         }
     }

@@ -15,7 +15,8 @@ namespace LoyaltyProgram
             Post("/", _ =>
             {
                 var newUser = this.Bind<LoyalityProgramUser>();
-                this.AddRegisteredUSer(newUser, loyaltyProgramUserStore);
+                this.AddRegisteredUser(newUser, loyaltyProgramUserStore);
+//                registeredUsers[user]
                 return this.CreatedResponse(newUser);
             });
 
@@ -25,6 +26,20 @@ namespace LoyaltyProgram
                 var updatedUser = this.Bind<LoyalityProgramUser>();
                 //store.update
                 return updatedUser;
+            });
+
+            Get("/{userId:int}", parameters =>
+            {
+                int userId = parameters.userId;
+
+                var user = loyaltyProgramUserStore.Get(userId);
+                if (user != null)
+                {
+                    return user;
+                } else
+                {
+                    return HttpStatusCode.NotFound;
+                }
             });
         }
 
@@ -37,7 +52,7 @@ namespace LoyaltyProgram
                 .WithModel(newUser);
         }
 
-        private void AddRegisteredUSer(LoyalityProgramUser newUser,
+        private void AddRegisteredUser(LoyalityProgramUser newUser,
             ILoyaltyProgramUserStore loyaltyProgramUserStore)
         {
             loyaltyProgramUserStore.Save(newUser);
