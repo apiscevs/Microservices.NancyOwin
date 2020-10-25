@@ -75,6 +75,7 @@ namespace ShoppingCart.ShoppingCart
               ));
         }
 
+
         private class ProductCatalogueProduct
         {
             [JsonProperty("Id")]
@@ -84,7 +85,7 @@ namespace ShoppingCart.ShoppingCart
             [JsonProperty("Description ")]
             public string ProductDescription { get; set; }
             [JsonProperty("Price")]
-            public decimal Price { get; set; }
+            public Money Price { get; set; }
         }
     }
 }

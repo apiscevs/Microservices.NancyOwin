@@ -51,7 +51,7 @@ namespace ProductsFunctionApp
                     Id = x,
                     Description = "Description " + x,
                     Name = "Name " + x,
-                    Price = 10 * x
+                    Price = new Money("USD", 1234 + x)
                 });
             }
 
@@ -64,7 +64,19 @@ namespace ProductsFunctionApp
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public Money Price { get; set; }
+    }
+
+    public class Money
+    {
+        public string Currency { get; }
+        public decimal Amount { get; }
+
+        public Money(string currency, decimal amount)
+        {
+            this.Currency = currency;
+            this.Amount = amount;
+        }
     }
 }
 
