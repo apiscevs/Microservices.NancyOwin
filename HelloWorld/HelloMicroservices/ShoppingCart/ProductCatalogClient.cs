@@ -1,10 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +15,12 @@ namespace ShoppingCart.ShoppingCart
 {
     public class ProductCatalogClient : IProductCatalogClient
     {
-        
+        private ICache _cache;
+        public ProductCatalogClient(ICache cache)
+        {
+            _cache = cache;
+        }
+
         private static AsyncRetryPolicy exponentialRetryPolicy =
           Policy
             .Handle<Exception>()
@@ -26,8 +34,8 @@ namespace ShoppingCart.ShoppingCart
            // @"https://microservice-getproducts.azurewebsites.net";
         @"http://127.0.0.1:7071";
         private static string getProductPathTemplate =
-           // "api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==";
-        "api/GetProductsFunc";
+        // "api/GetProductsFunc?code=DK9kxPuw5rW54iwme9q2E4ve7Z5Tb/wTe0uKLfnaOliQDYqZgQDAUA==";
+        "products?productIds=";
 
 
 
@@ -50,14 +58,39 @@ namespace ShoppingCart.ShoppingCart
             return await ConvertToShoppingCartItems(response).ConfigureAwait(false);
         }
 
-        private static async Task<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
+        private void AddToCache(string resource, HttpResponseMessage response)
         {
-            using (var httpClient = new HttpClient())
+            var cacheHeader = response
+            .Headers
+            .FirstOrDefault(h => h.Key.ToLower() == "cache-control");
+            if (string.IsNullOrEmpty(cacheHeader.Key))
+                return;
+            var maxAge =
+            CacheControlHeaderValue.Parse(cacheHeader.Value.FirstOrDefault())
+            .MaxAge;
+            if (maxAge.HasValue)
+                this._cache.Add(key: resource, value: response, ttl: maxAge.Value);
+        }
+
+        private async Task<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
+        {
+            var productIds = string.Join(",", productCatalogueIds);
+            var response = _cache.Get(productIds) as HttpResponseMessage;
+
+            if (response == null)
             {
-                var content = new StringContent(JsonConvert.SerializeObject(productCatalogueIds), UnicodeEncoding.UTF8, "application/json");
-                httpClient.BaseAddress = new Uri(productCatalogueBaseUrl);
-                return await httpClient.PostAsync(getProductPathTemplate, content).ConfigureAwait(false);
+                using (var httpClient = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(productCatalogueIds), UnicodeEncoding.UTF8, "application/json");
+                    httpClient.BaseAddress = new Uri(productCatalogueBaseUrl);
+                    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+
+                    var query = getProductPathTemplate + productIds;
+                    response = await httpClient.GetAsync(query).ConfigureAwait(false);
+                    AddToCache(productIds, response);
+                }
             }
+            return response;
         }
 
         private static async Task<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(HttpResponseMessage response)
@@ -78,11 +111,11 @@ namespace ShoppingCart.ShoppingCart
 
         private class ProductCatalogueProduct
         {
-            [JsonProperty("Id")]
+            [JsonProperty("productId")]
             public int ProductId { get; set; }
-            [JsonProperty("Name")]
+            [JsonProperty("productName")]
             public string ProductName { get; set; }
-            [JsonProperty("Description ")]
+            [JsonProperty("productDescription")]
             public string ProductDescription { get; set; }
             [JsonProperty("Price")]
             public Money Price { get; set; }
