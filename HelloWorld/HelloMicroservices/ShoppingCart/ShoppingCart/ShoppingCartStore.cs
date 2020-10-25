@@ -14,19 +14,26 @@
 Integrated Security=True";
 
         private const string readItemsSql =
-    @"select * from ShoppingCart, ShoppingCartItems
+    @"select ShoppingCartItems.* from ShoppingCart, ShoppingCartItems
 where ShoppingCartItems.ShoppingCartId = ShoppingCart.ID
-and ShoppingCart.UserId=@UserId";
+and ShoppingCart.UserId=@UserId"; //TODO: find the way to perform multimapping to nester object (issue is that money class is not populated)
 
         public async Task<ShoppingCart> Get(int userId)
         {
-            using (var conn = new SqlConnection(connectionString))
+            try
             {
-                var items = await
-                  conn.QueryAsync<ShoppingCartItem>(
-                    readItemsSql,
-                    new { UserId = userId });
-                return new ShoppingCart(userId, items);
+                using (var conn = new SqlConnection(connectionString))
+                {
+                    var items = await
+                      conn.QueryAsync<ShoppingCartItem>(
+                        readItemsSql,
+                        new { UserId = userId });
+                    return new ShoppingCart(userId, items);
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
         }
 

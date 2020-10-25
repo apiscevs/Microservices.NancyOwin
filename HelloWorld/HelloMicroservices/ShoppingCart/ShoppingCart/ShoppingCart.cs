@@ -41,7 +41,7 @@
         }
 
         public void RemoveItems(
-          int[] productCatalogueIds,
+          long[] productCatalogueIds,
           IEventStore eventStore)
         {
             items.RemoveWhere(i => productCatalogueIds.Contains(i.ProductCatalogId));
@@ -51,15 +51,11 @@
     public class ShoppingCartItem
     {
         public int ShoppingCartId { get; }
-        public int ProductCatalogId { get; }
+        public long ProductCatalogId { get; }
         public string ProductName { get; }
         public string ProductDescription { get; }
-        public Money Price { get; }
+        public Money Price { get; set; }
 
-        public ShoppingCartItem()
-        {
-
-        }
         public ShoppingCartItem(
           int productCatalogueId,
           string productName,
@@ -70,6 +66,15 @@
             this.ProductName = productName;
             this.ProductDescription = description;
             this.Price = price;
+        }
+
+        //for dapper
+        public ShoppingCartItem(System.Int32 ID, System.Int32 ShoppingCartId, System.Int64 ProductCatalogId, System.String ProductName, System.String ProductDescription, System.Int32 Amount, System.String Currency)
+        {
+            this.ProductCatalogId = ProductCatalogId;
+            this.ProductName = ProductName;
+            this.ProductDescription = ProductDescription;
+            this.Price = new Money(Currency, Amount);
         }
 
         public override bool Equals(object obj)

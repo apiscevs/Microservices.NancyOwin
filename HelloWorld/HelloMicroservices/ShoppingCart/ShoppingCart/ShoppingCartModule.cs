@@ -43,7 +43,7 @@ namespace ShoppingCart.ShoppingCart
             Delete("/{userId:int}/items",
                 async parameters =>
                 {
-                    var productCatalogIds = this.Bind<int[]>();
+                    var productCatalogIds = this.Bind<long[]>();
                     var userId = (int)parameters.userId;
 
                     var shoppingCart = await shoppingCartStore.Get(userId);
