@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nancy.Bootstrapper;
 using Nancy.Owin;
+using Nancy.TinyIoc;
 
 namespace LoyaltyProgram
 {
