@@ -9,15 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductsFunctionApp", "ProductsFunctionApp\ProductsFunctionApp.csproj", "{446A4296-337B-4543-8225-1A773B1C4925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram.csproj", "{C68F9A28-1612-4000-8868-E9564369A732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram.csproj", "{C68F9A28-1612-4000-8868-E9564369A732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGatewayMock", "ApiGatewayMock\ApiGatewayMock.csproj", "{EF764719-E9C2-4CEB-9D04-27E3856D7152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGatewayMock", "ApiGatewayMock\ApiGatewayMock.csproj", "{EF764719-E9C2-4CEB-9D04-27E3856D7152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialOffers.EventFeed", "SpecialOffers.EventFeed\SpecialOffers.EventFeed.csproj", "{0D01F15B-DD02-4C2E-870B-88844835F15B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecialOffers.EventFeed", "SpecialOffers.EventFeed\SpecialOffers.EventFeed.csproj", "{0D01F15B-DD02-4C2E-870B-88844835F15B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgramEventConsumer", "LoyaltyProgramEventConsumer\LoyaltyProgramEventConsumer.csproj", "{23EA0001-9533-4135-89D6-F2C969BB3DAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgramEventConsumer", "LoyaltyProgramEventConsumer\LoyaltyProgramEventConsumer.csproj", "{23EA0001-9533-4135-89D6-F2C969BB3DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog", "ProductCatalog\ProductCatalog.csproj", "{8FDD66AF-F4E4-444E-9A8B-FCD877A8A268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog", "ProductCatalog\ProductCatalog.csproj", "{8FDD66AF-F4E4-444E-9A8B-FCD877A8A268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram.UnitTest", "LoyaltyProgram.UnitTest\LoyaltyProgram.UnitTest.csproj", "{3ED707C2-3886-41F0-BE16-0ED9A811264E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{8FDD66AF-F4E4-444E-9A8B-FCD877A8A268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FDD66AF-F4E4-444E-9A8B-FCD877A8A268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FDD66AF-F4E4-444E-9A8B-FCD877A8A268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED707C2-3886-41F0-BE16-0ED9A811264E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED707C2-3886-41F0-BE16-0ED9A811264E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED707C2-3886-41F0-BE16-0ED9A811264E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED707C2-3886-41F0-BE16-0ED9A811264E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

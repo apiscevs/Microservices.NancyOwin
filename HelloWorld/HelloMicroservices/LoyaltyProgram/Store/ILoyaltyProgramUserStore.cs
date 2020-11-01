@@ -3,6 +3,6 @@
     public interface ILoyaltyProgramUserStore
     {
         LoyalityProgramUser Get(int userId);
-        void Save(LoyalityProgramUser shoppingCart);
+        LoyalityProgramUser Save(LoyalityProgramUser shoppingCart);
     }
 }

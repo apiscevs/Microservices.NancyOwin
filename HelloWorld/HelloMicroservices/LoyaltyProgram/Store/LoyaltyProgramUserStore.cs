@@ -11,16 +11,35 @@ namespace LoyaltyProgram.Store
 
         public LoyalityProgramUser Get(int userId)
         {
-            if (!database.ContainsKey(userId))
-                database[userId] = new LoyalityProgramUser(userId);
-            return database[userId];
+            if (database.ContainsKey(userId))
+                return database[userId];
+            return null;
         }
 
-        public void Save(LoyalityProgramUser loyaltyUProgramUser)
+        public LoyalityProgramUser Save(LoyalityProgramUser loyaltyUProgramUser)
         {
+            
             if (!database.ContainsKey(loyaltyUProgramUser.Id))
-                database[loyaltyUProgramUser.Id] = new LoyalityProgramUser(loyaltyUProgramUser.Id);
-            // Nothing needed. Saving would be needed with a real DB
+            {
+                var userId = new Random(1).Next(1, 1000000);
+                var newUser = new LoyalityProgramUser(userId);
+                newUser.Name = loyaltyUProgramUser.Name;
+                newUser.LoyaltyPoints = loyaltyUProgramUser.LoyaltyPoints;
+                newUser.Settings = loyaltyUProgramUser.Settings;
+                newUser.Id = userId;
+
+                database[newUser.Id] = newUser;
+                return newUser;
+            } else
+            {
+                var user = database[loyaltyUProgramUser.Id];
+                user.LoyaltyPoints = loyaltyUProgramUser.LoyaltyPoints;
+                user.Name = loyaltyUProgramUser.Name;
+                user.Settings = loyaltyUProgramUser.Settings;
+                database[loyaltyUProgramUser.Id] = user;
+                return user;
+            }
         }
+
     }
 }
